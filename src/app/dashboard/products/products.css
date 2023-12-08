@@ -1,0 +1,42 @@
+.header h2 {
+  color: #f18c68;
+  text-align: center;
+  padding: 10px 20px;
+  font-weight: bold;
+  font-size: 36px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  padding: 20px;
+}
+
+.addingProducts {
+  padding: 20px;
+}
+
+.products-table {
+  margin-top: 15px;
+  padding: 20px;
+}
+
+.update-products-table {
+  margin-top: 15px;
+  padding: 20px;
+}
+
+.fileUpload {
+  display: flex;
+}
+
+.fileUploadInput {
+  width: 50%;
+}
+
+.btnFileUpload {
+  width: 20%;
+  display: flex;
+  align-self: flex-end;
+}
