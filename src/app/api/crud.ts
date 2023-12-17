@@ -49,17 +49,49 @@ export const deleteProduct = async (id: number): Promise<void> => {
 
 ///////////////////////////////////////////////////////////////////////
 
-export const postSale = async (saleData: Sale): Promise<void> => {
+// export const postSale = async (saleData: Sale): Promise<void> => {
+//   try {
+//     await api.post("/sales", saleData);
+//   } catch (error) {
+//     throw error;
+//   }
+// };
+
+// ORDERS //
+
+// READ ORDERS
+
+export const getOrders = async (): Promise<Order[]> => {
   try {
-    await api.post("/sales", saleData);
+    const response = await api.get("/orders");
+    return response.data;
   } catch (error) {
     throw error;
   }
 };
 
-export const postOrder = async (orderData: Order): Promise<void> => {
+// UPDATE
+
+export const updateOrderStatus = async (
+  id: number,
+  updatedOrderStatus: Order
+): Promise<Order> => {
   try {
-    await api.post("/orders", orderData);
+    const response = await api.put(`/orders/${id}`, updatedOrderStatus);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+// SALES //
+
+// READ SALES
+
+export const getSales = async (): Promise<Sale[]> => {
+  try {
+    const response = await api.get("/orders");
+    return response.data;
   } catch (error) {
     throw error;
   }

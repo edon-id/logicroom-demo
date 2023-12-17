@@ -2,8 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { Product } from "@/types/types";
-import { getProducts } from "../api/crud";
+import { Order, Product, Sale } from "@/types/types";
+import { getOrders, getProducts, getSales } from "../api/crud";
 import isAuthenticated from "@/hooks/IsAuthenticated";
 import { FaBox } from "react-icons/fa";
 import { TbShoppingBagCheck } from "react-icons/tb";
@@ -16,6 +16,10 @@ const Dashboard = () => {
 
   const [products, setProducts] = useState<Product[]>([]);
 
+  const [orders, setOrders] = useState<Order[]>([]);
+
+  const [sales, setSales] = useState<Sale[]>([]);
+
   const lastThreeProductsAdded = products.slice(-3);
   // console.log(lastThreeProductsAdded);
 
@@ -23,8 +27,15 @@ const Dashboard = () => {
     setIsClient(true);
     const fetchData = async () => {
       try {
-        const data = await getProducts();
-        setProducts(data);
+        const productsData = await getProducts();
+        setProducts(productsData);
+
+        const ordersData = await getOrders();
+        setOrders(ordersData);
+
+        const salesData = await getSales();
+        setSales(salesData);
+        //
       } catch (error) {
         console.error("Error fetching products:", error);
       }
@@ -32,6 +43,13 @@ const Dashboard = () => {
 
     fetchData();
   }, []);
+
+  const calculateTotalPrice = (sales: Sale[]) => {
+    return sales.reduce((total, sale) => total + sale.totalPrice, 0);
+  };
+
+  const totalPrice = calculateTotalPrice(sales);
+  // console.log("Total Price:", totalPrice);
 
   if (!user) {
     return null;
@@ -61,8 +79,7 @@ const Dashboard = () => {
               </div>
               <Link href={"/dashboard/orders"}>
                 <h2>Total Orders</h2>
-                <p>0</p>
-                {/* <p>{orders.length}</p> */}
+                <p>{orders.length}</p>
               </Link>
             </div>
             <div className="card total-sales">
@@ -71,8 +88,7 @@ const Dashboard = () => {
               </div>
               <Link href={"/dashboard"}>
                 <h2>Total Sales</h2>
-                <p>0</p>
-                {/* <p>{sales.length}</p> */}
+                <p>$ {totalPrice}</p>
               </Link>
             </div>
           </div>

@@ -43,14 +43,14 @@ const Sidebar: React.FC = () => {
               <FaBox /> <span>Products</span>
             </Link>
           </li>
-          {/* <li>
+          <li>
             <Link
               className={pathname === "/dashboard/orders" ? "active" : ""}
               href="/dashboard/orders"
             >
               <TbShoppingBagCheck /> <span>Orders</span>
             </Link>
-          </li> */}
+          </li>
         </ul>
       </div>
       <button type="button" onClick={handleLogout} className="logout-btn">
