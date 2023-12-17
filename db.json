@@ -71,48 +71,5 @@
       "imgPath": "https://files.edgestore.dev/0rpzosjdnqy2ixpa/myImages/_public/01c19aa2-53c1-4758-8756-2e0a6f8de148.jpg"
     }
   ],
-  "orders": [
-    {
-      "id": 1702832605443,
-      "fullName": "Edon Idrizi",
-      "email": "edon.booking@outlook.com",
-      "phoneNumber": "070256321",
-      "address": "st:105 no:27 Tetovo",
-      "paymentMethod": "Cash on delivery",
-      "orderedAt": "Dec 17, 2023 18:03:09",
-      "totalPrice": 44,
-      "cartProducts": [
-        {
-          "id": 1700931954550,
-          "name": "product 2",
-          "description": "productdesc2",
-          "price": 22,
-          "imgPath": "https://files.edgestore.dev/0rpzosjdnqy2ixpa/myImages/_public/9d7c3859-894a-477c-bdcb-d7bb601c6614.jpg",
-          "quantity": 2
-        }
-      ],
-      "orderStatus": "In Progress"
-    },
-    {
-      "id": 1702835843836,
-      "fullName": "Melisa Havziu Idrizi",
-      "email": "melisa@hotmail.com",
-      "phoneNumber": "071700939",
-      "address": "Lenin br 1",
-      "paymentMethod": "Cash on delivery",
-      "orderedAt": "Dec 17, 2023 18:03:09",
-      "totalPrice": 13.99,
-      "cartProducts": [
-        {
-          "id": 1700931927432,
-          "name": "product 1",
-          "description": "productdesc1",
-          "price": 13.99,
-          "imgPath": "https://files.edgestore.dev/0rpzosjdnqy2ixpa/myImages/_public/e27c9563-a4d5-456d-bc15-b49b289cd378.jpg",
-          "quantity": 1
-        }
-      ],
-      "orderStatus": "In Progress"
-    }
-  ]
+  "orders": []
 }
