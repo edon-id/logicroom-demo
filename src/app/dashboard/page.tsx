@@ -21,7 +21,6 @@ const Dashboard = () => {
   const [sales, setSales] = useState<Sale[]>([]);
 
   const lastThreeProductsAdded = products.slice(-3);
-  // console.log(lastThreeProductsAdded);
 
   useEffect(() => {
     setIsClient(true);
@@ -35,7 +34,6 @@ const Dashboard = () => {
 
         const salesData = await getSales();
         setSales(salesData);
-        //
       } catch (error) {
         console.error("Error fetching products:", error);
       }
@@ -49,7 +47,6 @@ const Dashboard = () => {
   };
 
   const totalPrice = calculateTotalPrice(sales);
-  // console.log("Total Price:", totalPrice);
 
   if (!user) {
     return null;

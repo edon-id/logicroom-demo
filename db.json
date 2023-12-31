@@ -1,75 +1,76 @@
 {
   "products": [
     {
-      "id": 1700931927432,
-      "name": "product 1",
+      "id": 1704043966311,
+      "name": "product 1 ",
       "description": "productdesc1",
-      "price": 14,
-      "imgPath": "https://files.edgestore.dev/0rpzosjdnqy2ixpa/myImages/_public/e27c9563-a4d5-456d-bc15-b49b289cd378.jpg"
+      "price": 10,
+      "imgPath": "https://files.edgestore.dev/0rpzosjdnqy2ixpa/myImages/_public/4e550b4f-b328-4cb0-a3d7-f006bce64a1d.jpg",
+      "productKey": "KyteiVDd5Beq1v1"
     },
     {
-      "id": 1700931954550,
+      "id": 1704043981164,
       "name": "product 2",
       "description": "productdesc2",
-      "price": 22,
-      "imgPath": "https://files.edgestore.dev/0rpzosjdnqy2ixpa/myImages/_public/9d7c3859-894a-477c-bdcb-d7bb601c6614.jpg"
+      "price": 20,
+      "imgPath": "https://files.edgestore.dev/0rpzosjdnqy2ixpa/myImages/_public/702ae62a-388d-4ddd-bffa-15acfef6dcf0.jpg",
+      "productKey": "TNtbdB3z7kfCbxD"
     },
     {
-      "id": 1700932012903,
+      "id": 1704043995405,
       "name": "product 3",
       "description": "productdesc3",
-      "price": 42,
-      "imgPath": "https://files.edgestore.dev/0rpzosjdnqy2ixpa/myImages/_public/13ff9d58-749c-4e8d-8525-e30d1149a9a6.jpg"
+      "price": 30,
+      "imgPath": "https://files.edgestore.dev/0rpzosjdnqy2ixpa/myImages/_public/3e0c764b-5985-4daa-ad82-69acba6625cd.jpg",
+      "productKey": "TPLlQ4m8WXvM0wz"
     },
     {
-      "id": 1700989371227,
+      "id": 1704044020738,
       "name": "product 4",
       "description": "productdesc4",
-      "price": 25,
-      "imgPath": "https://files.edgestore.dev/0rpzosjdnqy2ixpa/myImages/_public/8d9dd434-31bc-46a6-a577-73a742c70e82.jpg"
+      "price": 40,
+      "imgPath": "https://files.edgestore.dev/0rpzosjdnqy2ixpa/myImages/_public/06069727-da75-41c1-b865-e868008609e0.jpg",
+      "productKey": "e5kwwaV0vuctQLQ"
     },
     {
-      "id": 1700989386203,
+      "id": 1704044033915,
       "name": "product 5",
       "description": "productdesc5",
-      "price": 56,
-      "imgPath": "https://files.edgestore.dev/0rpzosjdnqy2ixpa/myImages/_public/0f919a92-f7c3-401a-95aa-f6c5af686152.jpg"
+      "price": 50,
+      "imgPath": "https://files.edgestore.dev/0rpzosjdnqy2ixpa/myImages/_public/fc023c4e-ca0a-46ba-9847-7125ba64a6a9.jpg",
+      "productKey": "aR5YiVymn2wm6BJ"
     },
     {
-      "id": 1700989400253,
+      "id": 1704044048348,
       "name": "product 6",
       "description": "productdesc6",
-      "price": 34,
-      "imgPath": "https://files.edgestore.dev/0rpzosjdnqy2ixpa/myImages/_public/30bb8dab-ec86-42f1-aecf-e248881eef70.jpg"
-    },
-    {
-      "id": 1700989677612,
-      "name": "product 7",
-      "description": "productdesc7",
-      "price": 14,
-      "imgPath": "https://files.edgestore.dev/0rpzosjdnqy2ixpa/myImages/_public/50330d9f-785c-445b-a076-80db33d0fc16.jpg"
-    },
-    {
-      "id": 1700989741037,
-      "name": "product 8",
-      "description": "productdesc8",
-      "price": 65,
-      "imgPath": "https://files.edgestore.dev/0rpzosjdnqy2ixpa/myImages/_public/6a78f046-8d70-4ae8-892e-380bd8c2fb27.jpg"
-    },
-    {
-      "id": 1702208300871,
-      "name": "product 9",
-      "description": "productdesc9",
-      "price": 97,
-      "imgPath": "https://files.edgestore.dev/0rpzosjdnqy2ixpa/myImages/_public/d5f48b5e-61dd-463f-8834-29adae110b36.jpg"
-    },
-    {
-      "id": 1702237866329,
-      "name": "product 10",
-      "description": "productdesc10",
-      "price": 120,
-      "imgPath": "https://files.edgestore.dev/0rpzosjdnqy2ixpa/myImages/_public/01c19aa2-53c1-4758-8756-2e0a6f8de148.jpg"
+      "price": 60,
+      "imgPath": "https://files.edgestore.dev/0rpzosjdnqy2ixpa/myImages/_public/f8b7ff0e-dda8-4818-9365-aba31094f207.jpg",
+      "productKey": "g13ho2dxpd2WKNT"
     }
   ],
-  "orders": []
+  "orders": [
+    {
+      "id": 1704044511129,
+      "fullName": "Edon Idrizi",
+      "email": "edonidrizi@outlook.com",
+      "phoneNumber": "+38970796075",
+      "address": "St: 105 No: 27",
+      "paymentMethod": "Cash on delivery",
+      "orderedAt": "Dec 31, 2023 18:35:14",
+      "totalPrice": 10,
+      "cartProducts": [
+        {
+          "id": 1704043966311,
+          "name": "product 1 ",
+          "description": "productdesc1",
+          "price": 10,
+          "imgPath": "https://files.edgestore.dev/0rpzosjdnqy2ixpa/myImages/_public/4e550b4f-b328-4cb0-a3d7-f006bce64a1d.jpg",
+          "productKey": "KyteiVDd5Beq1v1",
+          "quantity": 1
+        }
+      ],
+      "orderStatus": "Pending"
+    }
+  ]
 }

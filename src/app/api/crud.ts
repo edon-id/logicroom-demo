@@ -1,7 +1,9 @@
 import api from "./api";
 import { Order, Product, Sale } from "../../types/types";
 
-// CREATE
+// PRODUCTS
+
+// CREATE PRODUCT
 
 export const createProduct = async (newProduct: Product): Promise<Product> => {
   try {
@@ -12,7 +14,7 @@ export const createProduct = async (newProduct: Product): Promise<Product> => {
   }
 };
 
-// READ
+// READ PRODUCT
 
 export const getProducts = async (): Promise<Product[]> => {
   try {
@@ -23,7 +25,7 @@ export const getProducts = async (): Promise<Product[]> => {
   }
 };
 
-// UPDATE
+// UPDATE PRODUCT
 
 export const updateProduct = async (
   id: number,
@@ -37,7 +39,7 @@ export const updateProduct = async (
   }
 };
 
-// DELETE
+// DELETE PRODUCT
 
 export const deleteProduct = async (id: number): Promise<void> => {
   try {
@@ -48,14 +50,6 @@ export const deleteProduct = async (id: number): Promise<void> => {
 };
 
 ///////////////////////////////////////////////////////////////////////
-
-// export const postSale = async (saleData: Sale): Promise<void> => {
-//   try {
-//     await api.post("/sales", saleData);
-//   } catch (error) {
-//     throw error;
-//   }
-// };
 
 // ORDERS //
 
@@ -70,7 +64,7 @@ export const getOrders = async (): Promise<Order[]> => {
   }
 };
 
-// UPDATE
+// UPDATE ORDERS
 
 export const updateOrderStatus = async (
   id: number,
@@ -83,6 +77,18 @@ export const updateOrderStatus = async (
     throw error;
   }
 };
+
+// DELETE ORDERS
+
+export const deleteOrder = async (id: number): Promise<void> => {
+  try {
+    await api.delete(`/orders/${id}`);
+  } catch (error) {
+    throw error;
+  }
+};
+
+/////////////////////////////////////////////////////////////////////////////
 
 // SALES //
 

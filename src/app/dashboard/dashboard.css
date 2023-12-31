@@ -55,15 +55,17 @@
 .total-products {
   border-left: 6px solid #f54952;
   padding: 50px;
-}
-
-.total-sales {
-  border-left: 6px solid #4caf50;
-  padding: 50px;
+  cursor: pointer;
 }
 
 .total-orders {
   border-left: 6px solid #f5c63c;
+  padding: 50px;
+  cursor: pointer;
+}
+
+.total-sales {
+  border-left: 6px solid #4caf50;
   padding: 50px;
 }
 

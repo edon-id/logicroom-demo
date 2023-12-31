@@ -14,9 +14,10 @@ import {
 } from "@chakra-ui/react";
 import { FaCheckCircle } from "react-icons/fa";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { IoTrashOutline } from "react-icons/io5";
 import Link from "next/link";
 import isAuthenticated from "@/hooks/IsAuthenticated";
-import { getOrders, updateOrderStatus } from "@/app/api/crud";
+import { deleteOrder, getOrders, updateOrderStatus } from "@/app/api/crud";
 import { Order } from "@/types/types";
 import "./orders.css";
 
@@ -82,6 +83,24 @@ const OrdersPage = () => {
         return "#03fc7b";
       default:
         return "#FFFFFF";
+    }
+  };
+
+  const handleDeleteOrder = async (id: number) => {
+    try {
+      const confirmed = window.confirm(
+        "Are you sure you want to delete this order?"
+      );
+
+      if (confirmed) {
+        await deleteOrder(id);
+        setOrders((prevOrders) =>
+          prevOrders.filter((order) => order.id !== id)
+        );
+      }
+      // If the user cancels, do nothing
+    } catch (error) {
+      console.error("Error deleting order:", error);
     }
   };
 
@@ -164,12 +183,24 @@ const OrdersPage = () => {
                         </Tooltip>
                         <Tooltip label="Mark as Delivered" placement="top">
                           <Button
+                            style={{
+                              marginRight: "5px",
+                              color: "white",
+                            }}
                             colorScheme="green"
                             onClick={() =>
                               handleStatusChange(order.id, "Delivered")
                             }
                           >
                             <FaCheckCircle />
+                          </Button>
+                        </Tooltip>
+                        <Tooltip label="Delete order" placement="top">
+                          <Button
+                            colorScheme="red"
+                            onClick={() => handleDeleteOrder(order.id)}
+                          >
+                            <IoTrashOutline />
                           </Button>
                         </Tooltip>
                       </Td>

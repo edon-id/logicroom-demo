@@ -28,9 +28,16 @@ import {
 } from "@chakra-ui/react";
 import "./products.css";
 import Link from "next/link";
+import { generateProductKey } from "@/hooks/ProductKeyGenerator";
+import UpdateProductModal from "@/app/components/modal/ProductModal";
 
-const CrudComponent = () => {
+const ProductsCrud = () => {
   const [isClient, setIsClient] = useState<boolean>(false);
+
+  const { user } = isAuthenticated();
+  if (!user) {
+    return null;
+  }
 
   // useEffect
   useEffect(() => {
@@ -47,11 +54,6 @@ const CrudComponent = () => {
     fetchData();
   }, []);
 
-  const { user } = isAuthenticated();
-  if (!user) {
-    return null;
-  }
-
   const toast = useToast();
 
   const { edgestore } = useEdgeStore();
@@ -61,13 +63,23 @@ const CrudComponent = () => {
   const [addProducts, setAddProducts] = useState<boolean>(false);
 
   const [products, setProducts] = useState<Product[]>([]);
+
   // new product
   const [newProductName, setNewProductName] = useState<string>("");
   const [newProductDescription, setNewProductDescription] =
     useState<string>("");
   const [newProductPrice, setNewProductPrice] = useState<number>(0);
   const [newProductImgPath, setNewProductImgPath] = useState<string>("");
-  // update product
+  const [newProductKeyGenerator, setNewProductKeyGenerator] =
+    useState<string>("");
+
+  // generate a new product key and update the state
+  const handleGenerateProductKey = () => {
+    const newProductKey = generateProductKey();
+    setNewProductKeyGenerator(newProductKey);
+  };
+
+  // update product states
   const [updatingProductId, setUpdatingProductId] = useState<number | null>(
     null
   );
@@ -79,6 +91,10 @@ const CrudComponent = () => {
   >(undefined);
   const [updatedProductImgPath, setUpdatedProductImgPath] =
     useState<string>("");
+  const [updatedProductKey, setUpdatedProductKey] = useState<string>("");
+
+  // update product modal
+  const [isUpdateModalOpen, setIsUpdateModalOpen] = useState<boolean>(false);
 
   // create product
   const handleCreateProduct = async () => {
@@ -106,6 +122,7 @@ const CrudComponent = () => {
         description: newProductDescription,
         price: newProductPrice,
         imgPath: newProductImgPath,
+        productKey: newProductKeyGenerator,
       };
       const createdProduct = await createProduct(newProductData);
       setProducts((prevProducts) => [...prevProducts, createdProduct]);
@@ -114,6 +131,7 @@ const CrudComponent = () => {
       setNewProductPrice(0);
       setNewProductImgPath("");
       setAfterFileUpload(!afterImageUpload);
+      setNewProductKeyGenerator("");
 
       // Show Chakra Toast
       toast({
@@ -141,30 +159,22 @@ const CrudComponent = () => {
       setUpdatedProductDescription(productToUpdate.description);
       setUpdatedProductPrice(productToUpdate.price);
       setUpdatedProductImgPath(productToUpdate.imgPath);
-    }
-  };
+      setUpdatedProductKey(productToUpdate.productKey!);
 
-  // delete product
-  const handleDeleteProduct = async (id: number) => {
-    try {
-      await deleteProduct(id);
-      setProducts((prevProducts) =>
-        prevProducts.filter((product) => product.id !== id)
-      );
-    } catch (error) {
-      console.error("Error deleting product:", error);
+      setIsUpdateModalOpen(true);
     }
   };
 
   // save updated product
   const handleSaveUpdate = async (id: number) => {
     try {
-      const updatedProductData = {
+      const updatedProductData: Product = {
         id: new Date().valueOf(),
         name: updatedProductName,
         description: updatedProductDescription,
         price: updatedProductPrice,
         imgPath: updatedProductImgPath,
+        productKey: updatedProductKey,
       };
       const updatedProduct: Product = await updateProduct(
         id,
@@ -192,6 +202,18 @@ const CrudComponent = () => {
     setUpdatedProductDescription("");
     setUpdatedProductPrice(0);
     setUpdatedProductImgPath("");
+  };
+
+  // delete product
+  const handleDeleteProduct = async (id: number) => {
+    try {
+      await deleteProduct(id);
+      setProducts((prevProducts) =>
+        prevProducts.filter((product) => product.id !== id)
+      );
+    } catch (error) {
+      console.error("Error deleting product:", error);
+    }
   };
 
   // image upload
@@ -281,6 +303,24 @@ const CrudComponent = () => {
                   onChange={(e) => setNewProductPrice(Number(e.target.value))}
                 />
               </FormControl>
+
+              {/* generate product key  */}
+              <FormControl>
+                <FormLabel style={{ marginTop: "5px" }}>Product Key</FormLabel>
+                <Input
+                  type="text"
+                  placeholder="Product Key"
+                  value={newProductKeyGenerator}
+                />
+                <Button
+                  style={{ marginTop: "15px" }}
+                  colorScheme="red"
+                  onClick={handleGenerateProductKey}
+                >
+                  Generate Product Key
+                </Button>
+              </FormControl>
+
               {/* Upload File */}
               <div className="fileUpload">
                 <FormControl className="fileUploadInput">
@@ -330,57 +370,29 @@ const CrudComponent = () => {
             </div>
           )}
 
-          {/* update products  */}
+          {/* update products and show modal */}
           {updatingProductId !== null && (
             <div className="update-products-table">
-              <FormControl>
-                <FormLabel style={{ marginTop: "25px" }}>
-                  Update product name
-                </FormLabel>
-                <Input
-                  type="text"
-                  placeholder="Enter update product name"
-                  value={updatedProductName}
-                  onChange={(e) => setUpdatedProductName(e.target.value)}
-                />
-              </FormControl>
-              <FormControl>
-                <FormLabel style={{ marginTop: "5px" }}>
-                  Update product description
-                </FormLabel>
-                <Input
-                  type="text"
-                  placeholder="Enter update product description"
-                  value={updatedProductDescription}
-                  onChange={(e) => setUpdatedProductDescription(e.target.value)}
-                />
-              </FormControl>
-
-              <FormControl>
-                <FormLabel style={{ marginTop: "5px" }}>
-                  Update product price
-                </FormLabel>
-                <Input
-                  type="number"
-                  placeholder="0"
-                  value={updatedProductPrice}
-                  onChange={(e) =>
-                    setUpdatedProductPrice(Number(e.target.value))
-                  }
-                />
-              </FormControl>
-
-              <FormControl>
-                <FormLabel style={{ marginTop: "5px" }}>
-                  Update product image path
-                </FormLabel>
-                <Input
-                  type="text"
-                  placeholder="Enter update product image path"
-                  value={updatedProductImgPath}
-                  onChange={(e) => setUpdatedProductImgPath(e.target.value)}
-                />
-              </FormControl>
+              {/* Show the update product modal */}
+              <UpdateProductModal
+                isOpen={isUpdateModalOpen}
+                onClose={() => setIsUpdateModalOpen(false)} // Close modal on cancel or save
+                product={{
+                  id: updatingProductId,
+                  name: updatedProductName,
+                  description: updatedProductDescription,
+                  price: updatedProductPrice || 0,
+                  imgPath: updatedProductImgPath,
+                  productKey: updatedProductKey,
+                }}
+                handleSaveUpdate={handleSaveUpdate}
+                handleCancelUpdate={handleCancelUpdate}
+                setUpdatedProductName={setUpdatedProductName}
+                setUpdatedProductDescription={setUpdatedProductDescription}
+                setUpdatedProductPrice={setUpdatedProductPrice}
+                setUpdatedProductImgPath={setUpdatedProductImgPath}
+                setUpdatedProductKey={setUpdatedProductKey}
+              />
             </div>
           )}
 
@@ -391,6 +403,7 @@ const CrudComponent = () => {
                 <Thead>
                   <Tr>
                     <Th>#</Th>
+                    <Th>Product key</Th>
                     <Th>Product name</Th>
                     <Th>Product description</Th>
                     <Th>Product price</Th>
@@ -402,9 +415,10 @@ const CrudComponent = () => {
                   {products.map((product, index) => (
                     <Tr key={product.id}>
                       <Td>{index + 1}</Td>
+                      <Td>{product.productKey}</Td>
                       <Td>{product.name}</Td>
                       <Td>{product.description}</Td>
-                      <Td>{product.price}</Td>
+                      <Td>$ {product.price}</Td>
                       {/* <Td>{product.imgPath}</Td> */}
                       <Td>
                         {updatingProductId === product.id ? (
@@ -453,4 +467,4 @@ const CrudComponent = () => {
   );
 };
 
-export default CrudComponent;
+export default ProductsCrud;

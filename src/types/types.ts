@@ -1,17 +1,3 @@
-// export interface Product {
-//   id: number;
-//   name: string;
-//   description: string;
-//   price: number | undefined;
-//   imgPath: string;
-// }
-
-// export interface Sale {
-//   id?: number;
-//   productId: number;
-//   productName: string;
-//   price: number;
-// }
 export interface Urls {
   url: string;
 }
@@ -37,6 +23,7 @@ export interface Product {
   description: string;
   price: number | undefined;
   imgPath: string;
+  productKey?: string;
 }
 
 export interface CartItem extends Product {
